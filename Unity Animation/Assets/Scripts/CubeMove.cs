@@ -10,8 +10,8 @@ public class CubeMove : MonoBehaviour
 
     private Vector3 rotationalVelocity = Vector3.zero;
 
-    public static float maxAccel = 0.0001f;
-    public static float movementSpeed = 0.001f;
+    public static float maxAccel = 0.1f;
+    public static float movementSpeed = 0.05f;
     // Start is called before the first frame update
     void Start()
     {

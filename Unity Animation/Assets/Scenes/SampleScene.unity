@@ -768,10 +768,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3154d98bc89bc47bf469be269ab0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationalSpeed: 0.05
-  verticalSpeed: 0.01
+  rotationalSpeed: 1.2
+  verticalSpeed: 0.5
   radius: 5
-  rotationalDecel: 0.000007
+  rotationalDecel: 0.004
 --- !u!1001 &1040708636
 PrefabInstance:
   m_ObjectHideFlags: 0
