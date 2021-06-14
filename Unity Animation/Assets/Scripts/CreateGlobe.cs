@@ -149,6 +149,7 @@ public class CreateGlobe : MonoBehaviour
             ((-118 < lon && lon < -100) && (20 < lat && -0.769*lon - 60.769 < lat && lat < 30)) ||    // Northern Mexico
             ((-105 <= lon && lon < -90) && (-0.4*lon - 22.0 < lat && lat <= 20)) ||                    // Southern Mexico
             ((-84 < lon && lon < -81) && (25 < lat && lat < 31))   ||                                 // Florida
+            ((-88 < lon && lon < -66) && (65 < lat && lat < 75 && - 0.333*lon + 41.67 < lat && lat < -0.7*lon + 19.0)) || // Baffin Island
             ((-90 < lon && lon < -78) && (-0.583*lon - 38.5 < lat && lat < -0.917*lon - 62.5));       // Central America
     }
 
@@ -157,10 +158,10 @@ public class CreateGlobe : MonoBehaviour
         lon *= Mathf.Rad2Deg;
         lat *= Mathf.Rad2Deg;
 
-        return ((-80 < lon && lon < -65) && (-20 < lat && lat < 10)) ||  // Northwest
-            ((-65 < lon && lon < -48) && (0 <= lat && lat < 7))  ||       // Northeast
-            ((-70 < lon && lon < -40) && (-30 < lat && lat < 0)) ||     // Brazil
-            ((-70 < lon && lon < -50) && (-50 < lat && lat <= -20));    // Argentina
+        return ((-81 < lon && lon < -35) && (-7 < lat && lat < 11 && lat < 2*lon + 160 && lat < -0.457*lon - 21.0)) ||  // North
+            ((-81 < lon && lon < -35) && (-18 <= lat && lat < -5 && -1.3 * lon - 110.3 < lat && 1.857*lon + 60.0 < lat))  ||       // Central
+            ((-72 < lon && lon <= -43) && (-24 < lat && lat < -18)) ||     // South Central
+            ((-73 < lon && lon < -50) && (-55 < lat && lat <= -22 && 1.55 * lon + 55.5 < lat));    // Argentina
     }
 
     private bool IsEurope(float lon, float lat)
@@ -168,47 +169,56 @@ public class CreateGlobe : MonoBehaviour
         lon *= Mathf.Rad2Deg;
         lat *= Mathf.Rad2Deg;
 
-        return ((-10 < lon && lon < 0) && (35 < lat && lat < 43)) ||     // Spain
-            ((-10 < lon && lon < 0) && (50 < lat && lat < 58)) ||        // UK
-            ((0 < lon && lon < 15) && (43 < lat && lat < 50)) ||        // Western Europe
-            ((5 < lon && lon < 25) && (58 < lat && lat < 70)) ||        // Scandanavia
-            ((15 < lon && lon < 35) && (40 < lat && lat < 53)) ||        // Eastern Europe
-            ((25 < lon && lon < 45) && (45 < lat && lat < 70)) ||        // Russia
-            ((27 < lon && lon < 43) && (36 < lat && lat < 41));          // Turkey
+        return ((-10 < lon && lon < 0) && (36 < lat && lat < 43)) ||     // Spain
+            ((-10 < lon && lon < 0) && (50 < lat && lat < 59 && lat < 1.4 * lon + 65 && lat < -1.2 * lon + 52)) ||         // UK
+            ((-4 < lon && lon < 15) && (42 < lat && lat < 54 && lat < 0.556*lon + 50.2 && 0.4375 * lon + 41.125 < lat)) || // Western Europe
+            ((5 < lon && lon < 21) && (55 < lat && lat < 70 && lat < 0.571*lon + 59.143 && -lon + 67 < lat && 2*lon + 26 < lat)) ||  // Sweden/Norway
+            ((-25 < lon && lon < -19) && (65 < lat && lat < 69)) ||      // Iceland
+            ((15 < lon && lon < 30) && (37 < lat && lat < 54 && -1.6*lon + 69 < lat && 0.833*lon + 18.67 < lat && 1.5*lon < lat)) ||  // Eastern Europe
+            ((21 <= lon && lon < 30) && (54 <= lat && lat < 70)) ||     // Finland and Baltic states
+            ((30 <= lon && lon < 48) && (46 <= lat && lat < 68)) || // Russia, Ukraine, Belarus
+            ((33 < lon && lon < 47) && (41 <= lat && lat < 46 && - 0.5*lon + 62 < lat)) ||  // Between Capsian and Black Seas
+            ((28 < lon && lon < 48) && (36 < lat && lat < 41));          // Turkey and Armenia
     }
     private bool IsAsia(float lon, float lat)
     {
         lon *= Mathf.Rad2Deg;
         lat *= Mathf.Rad2Deg;
 
-        return ((45 < lon && lon < 135) && (45 < lat && lat < 70)) ||  // Russia
-            ((135 < lon && lon < 180) && (60 < lat && lat < 70)) ||    // East Russia
-            ((85 < lon && lon < 120) && (33 < lat && lat < 46)) ||    // China and Mongolia
-            ((120 < lon && lon < 137) && (38 < lat && lat < 46)) ||    // Manchuria and Korea
-            ((130 < lon && lon < 136) && (31 < lat && lat < 35)) ||    // Japan
-            ((92 < lon && lon < 106) && (10 < lat && lat < 33)) ||    // Southeast Asia
-            ((110 < lon && lon < 118) && (-5 < lat && lat < 6)) ||    // Indonesia
-            ((120 < lon && lon < 124) && (7 < lat && lat < 14)) ||    // Philippines
-            ((68 < lon && lon < 86) && (22 < lat && lat < 30)) ||    // India
-            ((78 < lon && lon < 87) && (1.556*lon - 113 < lat && lat <= 22)) ||     // Southeast India
-            ((70 < lon && lon <= 78) && (-1.75*lon + 144.5f < lat && lat <= 22)) ||  // Southwest Indiea
-            ((54 < lon && lon < 85) && (25 < lat && lat < 46)) ||    // Central Asia
-            ((45 < lon && lon < 60) && (27 < lat && lat < 36)) ||    // Iran
-            ((35 < lon && lon < 45) && (28 < lat && lat < 36)) ||    // Middle east
-            ((40 < lon && lon < 54) && (17 < lat && lat < 28));      // Saudi Arabia
-    }
+        return ((48 <= lon && lon < 105) && (46 < lat && lat < 76 && lat < 0.1667 * lon + 58.5)) ||  // Russia and North Kazakhstan
+            ((105 <= lon && lon < 135) && (46 < lat && lat < 76 && lat < -0.133 * lon + 90)) ||    // Russia, North Mongolia, Manchuria
+            ((135 <= lon && lon <= 180) && (55 < lat && lat < 71 && 0.222 * lon + 25 < lat && lat < -0.1 * lon + 86.0)) || // Far east Russia
+            ((85 < lon && lon < 120) && (23 < lat && lat <= 46 && 1.625 * lon - 159 < lat)) ||    // China and Mongolia
+            ((120 < lon && lon < 130) && (35 < lat && lat <= 46 && -lon + 161 < lat)) ||        // Manchuria and Korea
+            ((127 < lon && lon < 140) && (31 < lat && lat < 43 && lat < 1.125 * lon - 113.25 && 0.4285 * lon - 25 < lat)) ||    // Japan
+            ((103 < lon && lon < 109) && (9 < lat && lat <= 23 && lat < -2.25 * lon + 259.25 && 25.5 * lon - 2668.5 < lat)) || // Vietnam
+            ((92 < lon && lon <= 103) && (10 < lat && lat <= 23 && -1.0833 * lon + 122.67 < lat)) ||    // Thailand and Myanmar
+            ((110 < lon && lon < 118) && (-3 < lat && lat < 7 && lat < 0.5 * lon - 52)) ||    // Indonesia 1
+            ((96 < lon && lon < 107) && (-5 < lat && lat < 6 && lat < -0.75 * lon + 78.5 && -0.818 * lon + 81.73 < lat)) || // Indonesia 2
+            ((120 < lon && lon < 124) && (8 < lat && lat < 14)) ||           // Philippines
+            ((68 < lon && lon < 86) && (22 < lat && lat < 30)) ||            // India
+            ((78 < lon && lon < 87) && (1.556 * lon - 113 < lat && lat <= 22)) ||     // Southeast India
+            ((70 < lon && lon <= 78) && (-1.75 * lon + 144.5f < lat && lat <= 22)) ||  // Southwest Indiea
+            ((54 < lon && lon < 85) && (25 < lat && lat < 46)) ||               // Central Asia
+            ((45 < lon && lon < 60) && (25 < lat && lat <= 36 && -0.625 * lon + 60.625 < lat)) ||    // Iran
+            ((35 < lon && lon < 45) && (28 < lat && lat <= 36)) ||    // Middle east
+            ((35 < lon && lon < 50) && (13 < lat && lat <= 28 && -2.875 * lon + 140.625 < lat && 0.125 * lon + 8.625 < lat && lat < -1.33 * lon + 90.67)) || // Saudi Arabia
+            ((50 <= lon && lon < 59) && (15 < lat && lat < 24 && 0.6667 * lon + -18.33 < lat)); // Saudi Arabia east tip
+     }
 
     private bool IsAfrica(float lon, float lat)
     {
         lon *= Mathf.Rad2Deg;
         lat *= Mathf.Rad2Deg;
 
-        return ((-16 < lon && lon < 10) && (5 < lat && lat < 29)) ||   // West Africa
-            ((-8 < lon && lon < 31) && (28 < lat && lat < 32)) ||   // North Africa
-            ((9 < lon && lon < 33) && (-10 < lat && lat < 28)) ||   // Central Africa
-            ((12 < lon && lon < 32) && (-34 < lat && lat < -9)) ||   // Southern Africa
-            ((32 < lon && lon < 45) && (0 < lat && lat < 10)) ||    // Eastern Africa
-            ((45 < lon && lon < 51) && (-25 < lat && lat < -13));   // Madagascar
+        return ((-18 < lon && lon < 9) && (5 < lat && lat < 36 && -0.8 * lon + -2.4 < lat && lat < 1.04 * lon + 40.78)) || // West Africa
+            ((9 <= lon && lon < 20) && (5 < lat && lat < -0.4 * lon + 38.0)) ||              // Central North
+            ((20 <= lon && lon < 45) && (5 < lat && lat < -1.428 * lon + 75.28 && lat < 32)) ||   // Egypt, Sudan, eastern Libya
+            ((45 <= lon && lon < 50) && (1 < lat && lat < 12 && lat < 0.2 * lon + 2 && 2 * lon - 88 < lat)) || // Somalia
+            ((9 <= lon && lon <= 45) && (-10 < lat && lat <= 5 && -5 * lon + 50 < lat && 2.4 * lon - 106 < lat)) || // Middle Strip
+            ((11 < lon && lon < 41) && (-15 < lat && lat <= -10)) ||                          // Another strip
+            ((11 < lon && lon < 40) && (-34 < lat && lat <= -15 && -2.125 * lon + 6.375 < lat && 1.363 * lon - 70.91 < lat)) ||  // The south
+            ((43 < lon && lon < 52) && (-25 < lat && lat < -13 && lat < 0.428 * lon - 34.857 && 2.75 * lon - 154.25 < lat));  // Madagascar
     }
 
     private bool IsAustralia(float lon, float lat)
@@ -222,7 +232,8 @@ public class CreateGlobe : MonoBehaviour
             ((140 < lon && lon < 147) && (-20 < lat && lat < -1.6 * lon + 217.8)) ||      // Northeast triangle
             ((138 < lon && lon < 150) && (-38 < lat && lat < -35 && -lon + 103.0 < lat)) ||  // Bottom east
             ((135 < lon && lon < 141) && (-0.8 * lon + 104.8 < lat && lat < 0)) ||      // Papua New Guinea west
-            ((141 <= lon && lon < 150) && (-9 < lat && lat < -lon + 140));               // Papua New Guinea east
+            ((141 <= lon && lon < 150) && (-9 < lat && lat < -lon + 140)) ||               // Papua New Guinea east
+            ((167 < lon && lon < 178) && (-46 < lat && lat < -37 && lat < 1.6*lon - 310.6 && 0.8 * lon + -181.2 < lat));  // New Zealand
     }
 
     private bool IsAntarctica(float lon, float lat)
